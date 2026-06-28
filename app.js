@@ -287,7 +287,8 @@ const productImages = {
   "realme-c75": [
     "assets/products/realme-c75-1.webp",
     "assets/products/realme-c75-2.webp",
-    "assets/products/realme-c75-3.webp"
+    "assets/products/realme-c75-3.webp",
+    "assets/products/realme-c75-4.webp"
   ]
 };
 

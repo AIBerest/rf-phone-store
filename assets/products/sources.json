@@ -47,19 +47,22 @@
     ]
   },
   "realme-note-60x": {
-    "source": "https://www.realme.com/ph/realme-note-60x",
+    "source": "https://www.mobiledokan.com/mobile/realme-note-60x/gallery",
     "files": [
       "assets/products/realme-note-60x-1.webp",
       "assets/products/realme-note-60x-2.webp",
       "assets/products/realme-note-60x-3.webp"
-    ]
+    ],
+    "note": "Product images listed as official pictures by MobileDokan; verify licensing before production use."
   },
   "realme-c75": {
-    "source": "https://www.realme.com/ph/realme-c75",
+    "source": "https://www.mobiledokan.com/mobile/realme-c75-256gb/gallery",
     "files": [
       "assets/products/realme-c75-1.webp",
       "assets/products/realme-c75-2.webp",
-      "assets/products/realme-c75-3.webp"
-    ]
+      "assets/products/realme-c75-3.webp",
+      "assets/products/realme-c75-4.webp"
+    ],
+    "note": "Product images listed as official pictures by MobileDokan; verify licensing before production use."
   }
 }
