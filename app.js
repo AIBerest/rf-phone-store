@@ -377,11 +377,27 @@ function homePage() {
           </div>
         </div>
         <div class="hero-showcase" aria-label="Витрина смартфонов">
-          <div class="hero-grid"></div>
-          <div class="hero-phone-row">
-            ${productImage(products[3], "hero")}
+          <div class="hero-feature hero-feature-main">
             ${productImage(products[4], "hero")}
-            ${productImage(products[9], "hero")}
+            <div>
+              <span>Хит недели</span>
+              <strong>${products[4].name}</strong>
+              <small>${products[4].memory} · ${money(products[4].price)}</small>
+            </div>
+          </div>
+          <div class="hero-feature hero-feature-side top">
+            ${productImage(products[3], "hero")}
+            <div>
+              <strong>${products[3].name}</strong>
+              <small>${money(products[3].price)}</small>
+            </div>
+          </div>
+          <div class="hero-feature hero-feature-side bottom">
+            ${productImage(products[0], "hero")}
+            <div>
+              <strong>${products[0].name}</strong>
+              <small>${money(products[0].price)}</small>
+            </div>
           </div>
         </div>
       </div>
