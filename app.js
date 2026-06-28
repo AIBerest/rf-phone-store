@@ -281,8 +281,7 @@ const productImages = {
   ],
   "realme-note-60x": [
     "assets/products/realme-note-60x-1.webp",
-    "assets/products/realme-note-60x-2.webp",
-    "assets/products/realme-note-60x-3.webp"
+    "assets/products/realme-note-60x-2.webp"
   ],
   "realme-c75": [
     "assets/products/realme-c75-1.webp",
