@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GadgetHub РФ — смартфоны с доставкой по России</title>
+    <meta
+      name="description"
+      content="GadgetHub — интернет-магазин смартфонов с доставкой по России, гарантией 12 месяцев и удобной оплатой."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="top-strip">
+        <span>Доставка по РФ</span>
+        <span>Гарантия 12 месяцев</span>
+        <span>Оплата картой, СБП, при получении</span>
+      </div>
+      <div class="header-inner">
+        <a class="brand" href="#/">
+          <span class="brand-mark">
+            <img src="assets/gadgethub-logo.png" alt="GadgetHub" />
+          </span>
+          <span>
+            <strong>GadgetHub</strong>
+            <small>смартфоны в наличии</small>
+          </span>
+        </a>
+        <label class="search">
+          <span>Поиск</span>
+          <input id="searchInput" type="search" placeholder="Redmi, Samsung, realme..." />
+        </label>
+        <nav class="main-nav" aria-label="Основная навигация">
+          <a href="#/">Главная</a>
+          <a href="#/catalog">Каталог</a>
+          <a href="#/help">Помощь</a>
+          <a class="cart-link" href="#/cart">Корзина <b id="cartCount">0</b></a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="app"></main>
+
+    <footer class="site-footer">
+      <div>
+        <div class="footer-brand">
+          <img src="assets/gadgethub-logo.png" alt="" />
+          <strong>GadgetHub</strong>
+        </div>
+        <p>Популярные смартфоны в наличии. Доставка по России, гарантия 12 месяцев и помощь с выбором перед покупкой.</p>
+      </div>
+      <div>
+        <h3>Покупателям</h3>
+        <a href="#/help">Доставка и оплата</a>
+        <a href="#/warranty">Возврат и гарантия</a>
+        <a href="#/contacts">Контакты</a>
+      </div>
+      <div>
+        <h3>Документы</h3>
+        <a href="#/privacy">Политика конфиденциальности</a>
+        <a href="#/terms">Пользовательское соглашение</a>
+        <a href="#/offer">Публичная оферта</a>
+      </div>
+      <div>
+        <h3>Связь</h3>
+        <a href="tel:+78005550123">8 800 555-01-23</a>
+        <a href="mailto:sales@gadgethub.ru">sales@gadgethub.ru</a>
+        <span>Пн-Вс, 09:00-21:00 МСК</span>
+      </div>
+    </footer>
+
+    <div class="mobile-bar">
+      <a href="#/">Главная</a>
+      <a href="#/catalog">Каталог</a>
+      <a href="#/help">Помощь</a>
+      <a href="#/cart">Корзина <b id="cartCountMobile">0</b></a>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

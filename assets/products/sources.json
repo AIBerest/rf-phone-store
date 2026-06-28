@@ -1,0 +1,65 @@
+{
+  "redmi-a5": {
+    "source": "https://www.mi.com/global/product/redmi-a5/",
+    "files": [
+      "assets/products/redmi-a5-1.webp",
+      "assets/products/redmi-a5-2.webp",
+      "assets/products/redmi-a5-3.webp"
+    ]
+  },
+  "redmi-15": {
+    "source": "https://www.mi.com/global/product/redmi-15-5g/",
+    "files": [
+      "assets/products/redmi-15-1.webp",
+      "assets/products/redmi-15-2.webp",
+      "assets/products/redmi-15-3.webp"
+    ]
+  },
+  "redmi-15c": {
+    "source": "https://www.mi.com/global/product/redmi-15c/",
+    "files": [
+      "assets/products/redmi-15c-1.webp",
+      "assets/products/redmi-15c-2.webp",
+      "assets/products/redmi-15c-3.webp"
+    ]
+  },
+  "redmi-a3-pro": {
+    "source": "https://www.mi.com/africa-en/product/redmi-a3-pro/",
+    "files": [
+      "assets/products/redmi-a3-pro-1.webp",
+      "assets/products/redmi-a3-pro-2.webp",
+      "assets/products/redmi-a3-pro-3.webp"
+    ]
+  },
+  "samsung-a56": {
+    "source": "https://www.samsung.com/ie/smartphones/galaxy-a/galaxy-a56-5g-awesome-lightgrey-256gb-sm-a566bzaceub/",
+    "files": [
+      "assets/products/samsung-a56-1.webp",
+      "assets/products/samsung-a56-2.webp",
+      "assets/products/samsung-a56-3.webp"
+    ]
+  },
+  "samsung-a17": {
+    "source": "https://www.samsung.com/ph/smartphones/galaxy-a/galaxy-a17-5g-gray-256gb-sm-a176bzakphl/",
+    "files": [
+      "assets/products/samsung-a17-1.webp",
+      "assets/products/samsung-a17-2.webp"
+    ]
+  },
+  "realme-note-60x": {
+    "source": "https://www.realme.com/ph/realme-note-60x",
+    "files": [
+      "assets/products/realme-note-60x-1.webp",
+      "assets/products/realme-note-60x-2.webp",
+      "assets/products/realme-note-60x-3.webp"
+    ]
+  },
+  "realme-c75": {
+    "source": "https://www.realme.com/ph/realme-c75",
+    "files": [
+      "assets/products/realme-c75-1.webp",
+      "assets/products/realme-c75-2.webp",
+      "assets/products/realme-c75-3.webp"
+    ]
+  }
+}
