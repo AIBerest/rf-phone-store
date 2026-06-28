@@ -1,6 +1,7 @@
 {
   "redmi-a5": {
     "source": "https://www.mi.com/global/product/redmi-a5/",
+    "verifiedViaPerplexity": "Official Xiaomi Global page with product images.",
     "files": [
       "assets/products/redmi-a5-1.webp",
       "assets/products/redmi-a5-2.webp",
@@ -9,6 +10,7 @@
   },
   "redmi-15": {
     "source": "https://www.mi.com/global/product/redmi-15-5g/",
+    "verifiedViaPerplexity": "Official Xiaomi Global page with product images.",
     "files": [
       "assets/products/redmi-15-1.webp",
       "assets/products/redmi-15-2.webp",
@@ -17,6 +19,7 @@
   },
   "redmi-15c": {
     "source": "https://www.mi.com/global/product/redmi-15c/",
+    "verifiedViaPerplexity": "Official Xiaomi Global page with product images.",
     "files": [
       "assets/products/redmi-15c-1.webp",
       "assets/products/redmi-15c-2.webp",
@@ -25,6 +28,7 @@
   },
   "redmi-a3-pro": {
     "source": "https://www.mi.com/africa-en/product/redmi-a3-pro/",
+    "verifiedViaPerplexity": "Official Xiaomi regional page with product images.",
     "files": [
       "assets/products/redmi-a3-pro-1.webp",
       "assets/products/redmi-a3-pro-2.webp",
@@ -33,6 +37,7 @@
   },
   "samsung-a56": {
     "source": "https://www.samsung.com/ie/smartphones/galaxy-a/galaxy-a56-5g-awesome-lightgrey-256gb-sm-a566bzaceub/",
+    "verifiedViaPerplexity": "Official Samsung product page with product imagery.",
     "files": [
       "assets/products/samsung-a56-1.webp",
       "assets/products/samsung-a56-2.webp",
@@ -41,6 +46,7 @@
   },
   "samsung-a17": {
     "source": "https://www.samsung.com/ph/smartphones/galaxy-a/galaxy-a17-5g-gray-256gb-sm-a176bzakphl/",
+    "verifiedViaPerplexity": "Official Samsung Philippines product page with product imagery.",
     "files": [
       "assets/products/samsung-a17-1.webp",
       "assets/products/samsung-a17-2.webp"
@@ -48,6 +54,8 @@
   },
   "realme-note-60x": {
     "source": "https://www.mobiledokan.com/mobile/realme-note-60x/gallery",
+    "officialPage": "https://www.realme.com/global/realme-note-60x",
+    "verifiedViaPerplexity": "Official realme page found; local gallery uses cleaner product renders listed as official pictures by MobileDokan.",
     "files": [
       "assets/products/realme-note-60x-1.webp",
       "assets/products/realme-note-60x-2.webp",
@@ -57,6 +65,7 @@
   },
   "realme-c75": {
     "source": "https://www.mobiledokan.com/mobile/realme-c75-256gb/gallery",
+    "verifiedViaPerplexity": "No official realme C75 page was returned by Perplexity; local gallery uses MobileDokan images listed as official pictures.",
     "files": [
       "assets/products/realme-c75-1.webp",
       "assets/products/realme-c75-2.webp",
