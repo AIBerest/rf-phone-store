@@ -1,27 +1,34 @@
-# VoiceBox
+# Refero Phone Catalog
 
-Source: https://designmd.ai/chef/voicebox
-License: MIT
+Primary reference: [Nothing Tech Catalog Page UI](https://refero.design/pages/1e477637-d7a6-4264-8892-a056587b9232?query=phone%20store%20website%20design&source=search).
 
-VoiceBox is a high-contrast editorial design system with print-magazine energy: massive headlines, black-and-white foundations, sharp flat surfaces, thick borders, compact body text, and one aggressive red accent.
+## Reference Lock
 
-## Color Palette
+Preserve from the reference: light retail canvas, large real product/lifestyle media, asymmetric hero composition, thin borders, neutral surfaces, short spec-led product copy, and a black primary purchase action.
 
-Brand: `#0A0A0A`, `#EF4444`, `#FAFAFA`, `#F5F5F5`.
-Content: `#0A0A0A`, `#525252`, `#A3A3A3`.
-Borders: `#E5E5E5`, `#D4D4D4`, `#0A0A0A`.
-Semantic: success `#16A34A`, warning `#CA8A04`, error `#EF4444`.
+Adapt for GadgetHub: Russian consumer storefront, real smartphone photos, delivery and warranty trust signals, clear price blocks, catalog filters, product detail gallery, cart, checkout, and required commercial/legal pages.
+
+Reject: poster-like ad images for product cards, heavy black/red brutalist styling, decorative grids, fake CSS phone illustrations, internal prototype language, and generic card-heavy landing-page sections.
+
+## Tokens
+
+Background: `#F4F5F6`.
+Canvas: `#FFFFFF`.
+Surface: `#F8F8F8`, strong surface `#ECEFF1`.
+Text: `#111315`, secondary `#5B616B`, tertiary `#8A929D`.
+Borders: `#DFE3E7`, strong `#C6CCD2`.
+Primary CTA: `#111315`, hover `#2A2F35`.
+Sale/accent: `#E94D5F`, only for discounts and promo labels.
+Success: `#16845B`, only for positive status/actions.
+Radius: 8px.
+Elevation: subtle retail shadow only on hero media, mobile bar, and product hover.
 
 ## Typography
 
-Display, headline, and subhead use `Archivo Black, Impact, "Arial Black", sans-serif`.
-Body copy uses `Work Sans, -apple-system, "Segoe UI", Helvetica, sans-serif`.
-Code uses `Space Mono, "Courier New", Consolas, monospace`.
-
-## Spacing
-
-Base: 8px. Scale: 8, 16, 32, 48, 64, 96.
+Use `Inter` across the site. Headlines rely on tight weight and scale, not decorative font pairing. Body text stays readable at 16-18px with secondary text no lighter than the muted token.
 
 ## Component Rules
 
-Use 2px borders for interactive elements. Keep elements flat and sharp. Use red sparingly for one primary action or emphasis per viewport. Avoid rounded corners, soft shadows, gradients, and decorative blur.
+Product cards are interactive inventory containers, so cards are appropriate there. Informational sections use restrained blocks and dividers instead of nested cards. Product imagery remains real photo/render assets and must stay front/back/product-focused.
+
+Buttons use black for the primary purchase path. Sale red is never used as a general brand color. Filter chips and memory/color options are pill controls with selected state using black.

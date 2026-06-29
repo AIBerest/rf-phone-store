@@ -364,8 +364,8 @@ function homePage() {
       <div class="hero">
         <div class="hero-copy">
           <p class="eyebrow">Смартфоны в наличии с доставкой по России</p>
-          <h1>Популярные смартфоны для работы, учебы и связи</h1>
-          <p class="lead">Выберите подходящую модель Redmi, realme или Samsung, сравните характеристики и оформите заказ онлайн за несколько минут.</p>
+          <h1>Телефоны, которые удобно выбрать и приятно получить</h1>
+          <p class="lead">Собрали популярные модели Redmi, realme и Samsung: реальные фото, понятные характеристики, честные цены и оформление заказа за несколько минут.</p>
           <div class="hero-actions">
             <a class="btn primary" href="#/catalog">Смотреть каталог</a>
             <a class="btn secondary" href="#/help">Доставка и гарантия</a>
@@ -379,9 +379,9 @@ function homePage() {
         <div class="hero-showcase" aria-label="Витрина смартфонов">
           <img class="hero-campaign-image" src="assets/hero-family-phone.png" alt="Семья выбирает смартфон в гостиной" />
           <div class="hero-campaign-overlay">
-            <span>Хит недели</span>
-            <strong>Смартфон, который собирает всех вокруг</strong>
-            <small>Популярные модели от 7 990 ₽ с доставкой по России</small>
+            <span>Подборка недели</span>
+            <strong>Новый смартфон без долгих сравнений</strong>
+            <small>Поможем выбрать модель под бюджет и доставим заказ по России</small>
             <a class="btn primary" href="#/catalog">Выбрать телефон</a>
           </div>
         </div>
