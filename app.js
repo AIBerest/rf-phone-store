@@ -377,27 +377,12 @@ function homePage() {
           </div>
         </div>
         <div class="hero-showcase" aria-label="Витрина смартфонов">
-          <div class="hero-feature hero-feature-main">
-            ${productImage(products[4], "hero")}
-            <div>
-              <span>Хит недели</span>
-              <strong>${products[4].name}</strong>
-              <small>${products[4].memory} · ${money(products[4].price)}</small>
-            </div>
-          </div>
-          <div class="hero-feature hero-feature-side top">
-            ${productImage(products[3], "hero")}
-            <div>
-              <strong>${products[3].name}</strong>
-              <small>${money(products[3].price)}</small>
-            </div>
-          </div>
-          <div class="hero-feature hero-feature-side bottom">
-            ${productImage(products[0], "hero")}
-            <div>
-              <strong>${products[0].name}</strong>
-              <small>${money(products[0].price)}</small>
-            </div>
+          <img class="hero-campaign-image" src="assets/hero-family-phone.png" alt="Семья выбирает смартфон в гостиной" />
+          <div class="hero-campaign-overlay">
+            <span>Хит недели</span>
+            <strong>Смартфон, который собирает всех вокруг</strong>
+            <small>Популярные модели от 7 990 ₽ с доставкой по России</small>
+            <a class="btn primary" href="#/catalog">Выбрать телефон</a>
           </div>
         </div>
       </div>
