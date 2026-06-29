@@ -35,14 +35,21 @@ Buttons use black for the primary purchase path. Sale red is never used as a gen
 
 ## Checkout Flow
 
-Research method: Refero MCP flow tools were not exposed in the current Codex environment, so the flow follows the Refero methodology with browser-researched ecommerce checkout references and the bundled craft rules for forms, focus states, mobile touch targets, and copy.
+Research method: Refero MCP flow and screen tools are connected. The checkout flow now uses these references:
+
+- Nike Flow 2041: cart review, delivery mode selection, pickup-point list, address form, shipping speed, payment method, order review.
+- adidas Flow 10243: contact/address step, selected address validation, shipping cards, payment entry, payment failure recovery, persistent order summary.
+- Farfetch Flow 3550: two-column secure checkout, promo code in summary, payment method detail states, external payment interruption/retry pattern.
+- Acne Studios Flow 4359: email-first sign-in/registration, short create-account form, password requirements, terms consent, post-submit account state.
 
 Primary flow: cart -> contacts/account -> delivery/address -> payment -> review -> order accepted.
 
 Registration rule: account creation is optional. Guest checkout stays first because forcing registration before payment increases friction for a smartphone purchase. The account path only asks for a password after the buyer chooses to create an account.
 
-Delivery rule: show concrete RF-market choices as cards: pickup point, courier, and self-pickup. City and address fields use explicit labels and autocomplete attributes. The final delivery interval is confirmed by manager because inventory and logistics are prototype/static.
+Account rule: a separate account page starts with email, then branches into sign-in, create account, password reset, or dashboard. This mirrors the Refero email-first account flow without blocking checkout.
 
-Payment rule: show payment choices as cards: SBP, online card, pay on receipt, and installment. Money is not described as charged immediately; copy says the payment link/options come after stock confirmation.
+Delivery rule: show concrete RF-market choices as cards: pickup point, courier, and self-pickup. City and address fields use explicit labels and autocomplete attributes. For pickup points, show selectable location cards; for delivery, show speed cards with price/ETA. The final interval is confirmed by manager because inventory and logistics are prototype/static.
 
-Confirmation rule: before submitting, the buyer sees selected account mode, delivery, payment, and manager callback. Legal consent remains visible near the final CTA.
+Payment rule: show payment choices as cards: SBP, online card, pay on receipt, and installment. Card selection reveals card fields with payment autocomplete attributes. Non-card methods show clear next-step cards. Money is not described as charged immediately; copy says the payment link/options come after stock confirmation.
+
+Confirmation rule: before submitting, the buyer sees selected account mode, delivery method, speed or pickup address, payment, and manager callback. Legal consent remains visible near the final CTA.

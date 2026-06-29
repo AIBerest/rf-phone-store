@@ -832,6 +832,114 @@ h3 {
   font-weight: 800;
 }
 
+.account-layout {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.85fr) minmax(0, 1.15fr);
+  gap: 20px;
+}
+
+.account-side,
+.account-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--canvas);
+}
+
+.account-side,
+.account-panel {
+  padding: 28px;
+}
+
+.account-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.account-tabs button,
+.link-button {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  background: #fff;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.account-tabs button.active {
+  border-color: var(--ink);
+  color: #fff;
+  background: var(--ink);
+}
+
+.link-button {
+  width: fit-content;
+  border: 0;
+  padding: 8px 0;
+  color: var(--ink);
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.requirement-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: -4px 0 14px;
+  padding: 0;
+  list-style: none;
+}
+
+.requirement-list li {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 9px;
+  color: var(--muted);
+  background: var(--surface);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.account-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.account-cards div,
+.selected-card,
+.payment-note {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+  background: var(--surface);
+}
+
+.account-cards strong,
+.account-cards span,
+.selected-card strong,
+.selected-card span,
+.payment-note strong,
+.payment-note span {
+  display: block;
+}
+
+.account-cards span,
+.selected-card span,
+.payment-note span {
+  margin-top: 6px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.selected-card.success {
+  border-color: rgba(22, 132, 91, 0.34);
+  background: #f0faf6;
+}
+
 .checkout-steps {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -967,6 +1075,21 @@ h3 {
   border-radius: var(--radius);
   padding: 12px;
   background: #fff;
+}
+
+.payment-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.payment-fields .field {
+  margin-bottom: 4px;
+}
+
+.payment-note {
+  margin: 12px 0 16px;
 }
 
 .confirm-list {
@@ -1150,6 +1273,7 @@ h3 {
   .catalog-layout,
   .detail-grid,
   .cart-layout,
+  .account-layout,
   .site-footer {
     grid-template-columns: 1fr;
   }
@@ -1185,7 +1309,7 @@ h3 {
     left: 12px;
     z-index: 30;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 4px;
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -1199,7 +1323,8 @@ h3 {
     border-radius: calc(var(--radius) - 2px);
     padding: 9px 4px;
     text-align: center;
-    font-size: 13px;
+    font-size: 12px;
+    line-height: 1.1;
   }
 
   .mobile-bar a:hover {
@@ -1236,6 +1361,25 @@ h3 {
     font-size: 15px;
   }
 
+  .mobile-bar {
+    right: 8px;
+    left: 8px;
+    gap: 2px;
+    padding: 6px;
+  }
+
+  .mobile-bar a {
+    padding: 8px 2px;
+    font-size: 11px;
+  }
+
+  .mobile-bar b {
+    min-width: 18px;
+    height: 18px;
+    margin-left: 2px;
+    font-size: 11px;
+  }
+
   .hero-actions .btn,
   .price-row .btn,
   .product-actions .btn {
@@ -1245,6 +1389,8 @@ h3 {
   .product-grid,
   .benefits,
   .help-grid,
+  .account-cards,
+  .payment-fields,
   .choice-grid,
   .choice-grid.compact,
   .order-next {
