@@ -782,7 +782,7 @@ h3 {
 
 .cart-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
+  grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
   gap: 20px;
 }
 
@@ -830,6 +830,223 @@ h3 {
   border-top: 1px solid var(--ink);
   font-size: 22px;
   font-weight: 800;
+}
+
+.checkout-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.step-pill {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 9px 6px;
+  color: var(--muted);
+  background: #fff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.step-pill span {
+  display: inline-grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.step-pill.active {
+  border-color: var(--ink);
+  color: #fff;
+  background: var(--ink);
+}
+
+.step-pill.active span {
+  color: var(--ink);
+  background: #fff;
+}
+
+.checkout-step {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.choice-grid.compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.choice-card {
+  display: grid;
+  gap: 5px;
+  min-height: 96px;
+  align-content: start;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 13px;
+  color: var(--ink);
+  background: #fff;
+  text-align: left;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.choice-card:hover {
+  border-color: var(--line-strong);
+  background: var(--surface);
+}
+
+.choice-card.active {
+  border-color: var(--ink);
+  background: #f2f4f6;
+}
+
+.choice-card strong,
+.choice-card span,
+.choice-card small {
+  display: block;
+}
+
+.choice-card span,
+.choice-card small {
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.choice-card small {
+  font-size: 12px;
+}
+
+.checkout-next {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.checkout-next:disabled,
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+  transform: none;
+}
+
+.promo-row {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 16px;
+}
+
+.promo-row label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.promo-row div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.promo-row input {
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 12px;
+  background: #fff;
+}
+
+.confirm-list {
+  display: grid;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin: 16px 0;
+  background: #fff;
+}
+
+.confirm-list div {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 10px;
+  border-bottom: 1px solid var(--line);
+  padding: 12px;
+}
+
+.confirm-list div:last-child {
+  border-bottom: 0;
+}
+
+.confirm-list span {
+  color: var(--muted);
+}
+
+.check-row {
+  display: flex;
+  gap: 10px;
+  align-items: start;
+  margin: 14px 0;
+  color: var(--muted);
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.check-row input {
+  margin-top: 3px;
+}
+
+.order-summary {
+  padding-top: 18px;
+}
+
+.checkout-success {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(28px, 6vw, 72px);
+  background: var(--canvas);
+}
+
+.checkout-success h1 {
+  max-width: 760px;
+}
+
+.order-next {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 28px 0;
+}
+
+.order-next div {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  background: var(--surface);
+}
+
+.order-next strong,
+.order-next span {
+  display: block;
+}
+
+.order-next span {
+  margin-top: 6px;
+  color: var(--muted);
+  line-height: 1.45;
 }
 
 .help-grid {
@@ -1027,8 +1244,20 @@ h3 {
 
   .product-grid,
   .benefits,
-  .help-grid {
+  .help-grid,
+  .choice-grid,
+  .choice-grid.compact,
+  .order-next {
     grid-template-columns: 1fr;
+  }
+
+  .checkout-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .step-pill {
+    justify-content: flex-start;
+    padding: 9px;
   }
 
   .stats {
@@ -1075,6 +1304,14 @@ h3 {
   }
 
   .spec-table div {
+    grid-template-columns: 1fr;
+  }
+
+  .confirm-list div {
+    grid-template-columns: 1fr;
+  }
+
+  .promo-row div {
     grid-template-columns: 1fr;
   }
 }

@@ -248,6 +248,35 @@ const searchInput = document.querySelector("#searchInput");
 
 let cart = JSON.parse(localStorage.getItem("gadgethub-cart") || "{}");
 let activeGallery = 0;
+let checkoutState = {
+  step: "contact",
+  account: "guest",
+  delivery: "pvz",
+  payment: "sbp",
+  promoApplied: false,
+  submitted: false,
+  orderId: ""
+};
+
+const checkoutSteps = [
+  { id: "contact", label: "Контакты" },
+  { id: "delivery", label: "Доставка" },
+  { id: "payment", label: "Оплата" },
+  { id: "confirm", label: "Проверка" }
+];
+
+const deliveryMethods = [
+  { id: "pvz", title: "Пункт выдачи", meta: "1-3 дня", price: 0, note: "Подберем ближайший ПВЗ после подтверждения города." },
+  { id: "courier", title: "Курьер", meta: "завтра или позже", price: 490, note: "Курьер заранее позвонит и согласует удобный интервал." },
+  { id: "pickup", title: "Самовывоз", meta: "сегодня", price: 0, note: "Резерв держится до конца следующего рабочего дня." }
+];
+
+const paymentMethods = [
+  { id: "sbp", title: "СБП", meta: "быстро и без карты", note: "Пришлем ссылку на оплату после проверки наличия." },
+  { id: "card", title: "Картой онлайн", meta: "Visa, Mastercard, Мир", note: "Оплата проходит на защищенной платежной странице." },
+  { id: "cod", title: "При получении", meta: "карта или наличные", note: "Доступно для курьера, ПВЗ и самовывоза." },
+  { id: "installment", title: "Рассрочка", meta: "от 3 до 12 месяцев", note: "Менеджер пришлет варианты рассрочки перед оплатой." }
+];
 
 const productImages = {
   "redmi-a5": [
@@ -316,6 +345,29 @@ function changeQty(id, delta) {
   cart[id] = Math.max(0, (cart[id] || 0) + delta);
   if (!cart[id]) delete cart[id];
   saveCart();
+  render();
+}
+
+function setCheckout(key, value) {
+  checkoutState[key] = value;
+  checkoutState.submitted = false;
+  render();
+}
+
+function goCheckoutStep(step) {
+  checkoutState.step = step;
+  checkoutState.submitted = false;
+  render();
+}
+
+function applyPromo() {
+  checkoutState.promoApplied = true;
+  render();
+}
+
+function submitOrder() {
+  checkoutState.submitted = true;
+  checkoutState.orderId = checkoutState.orderId || `GH-${String(Date.now()).slice(-6)}`;
   render();
 }
 
@@ -516,8 +568,34 @@ function productPage(id) {
 function cartPage() {
   const entries = Object.entries(cart).map(([id, qty]) => ({ product: products.find((item) => item.id === id), qty })).filter((item) => item.product);
   const subtotal = entries.reduce((sum, item) => sum + item.product.price * item.qty, 0);
-  const delivery = subtotal > 30000 || subtotal === 0 ? 0 : 490;
-  const total = subtotal + delivery;
+  const selectedDelivery = deliveryMethods.find((item) => item.id === checkoutState.delivery) || deliveryMethods[0];
+  const delivery = subtotal > 30000 || subtotal === 0 ? 0 : selectedDelivery.price;
+  const discount = checkoutState.promoApplied && subtotal ? Math.min(1000, Math.round(subtotal * 0.04)) : 0;
+  const total = Math.max(0, subtotal + delivery - discount);
+  const activeStepIndex = checkoutSteps.findIndex((item) => item.id === checkoutState.step);
+  const nextStep = checkoutSteps[Math.min(activeStepIndex + 1, checkoutSteps.length - 1)]?.id || "confirm";
+  const selectedPayment = paymentMethods.find((item) => item.id === checkoutState.payment) || paymentMethods[0];
+
+  if (checkoutState.submitted && entries.length) {
+    return `
+      <section class="page">
+        <div class="checkout-success">
+          <p class="eyebrow">Заказ принят</p>
+          <h1>Мы зарезервировали смартфон</h1>
+          <p class="lead">Номер заказа ${checkoutState.orderId}. Менеджер позвонит, подтвердит наличие, способ доставки и финальную сумму ${money(total)}.</p>
+          <div class="order-next">
+            <div><strong>Дальше</strong><span>Подтверждение по телефону в течение 15 минут.</span></div>
+            <div><strong>Доставка</strong><span>${selectedDelivery.title}: ${selectedDelivery.meta}.</span></div>
+            <div><strong>Оплата</strong><span>${selectedPayment.title}. ${selectedPayment.note}</span></div>
+          </div>
+          <div class="hero-actions">
+            <a class="btn primary" href="#/catalog">Вернуться в каталог</a>
+            <a class="btn secondary" href="#/help">Условия доставки</a>
+          </div>
+        </div>
+      </section>
+    `;
+  }
 
   return `
     <section class="page">
@@ -541,16 +619,100 @@ function cartPage() {
           `).join("") : `<div class="empty"><div><h2>Корзина пуста</h2><a class="btn primary" href="#/catalog">Перейти в каталог</a></div></div>`}
         </div>
         <aside class="checkout-panel">
-          <h2>Итого</h2>
-          <div class="summary-row"><span>Товары</span><strong>${money(subtotal)}</strong></div>
-          <div class="summary-row"><span>Доставка</span><strong>${delivery ? money(delivery) : "бесплатно"}</strong></div>
-          <div class="summary-row total"><span>К оплате</span><strong>${money(total)}</strong></div>
-          <div class="field"><label>Имя</label><input placeholder="Иван" /></div>
-          <div class="field"><label>Телефон</label><input placeholder="+7 900 000-00-00" /></div>
-          <div class="field"><label>Город</label><input placeholder="Москва" /></div>
-          <div class="field"><label>Способ оплаты</label><select><option>Картой онлайн</option><option>СБП</option><option>При получении</option></select></div>
-          <button class="btn green" style="width:100%">Оформить заказ</button>
-          <p class="muted">Нажимая кнопку, покупатель соглашается с офертой и политикой обработки персональных данных.</p>
+          <div class="checkout-steps" aria-label="Шаги оформления заказа">
+            ${checkoutSteps.map((step, index) => `
+              <button class="step-pill ${checkoutState.step === step.id ? "active" : ""}" onclick="goCheckoutStep('${step.id}')">
+                <span>${index + 1}</span>${step.label}
+              </button>
+            `).join("")}
+          </div>
+
+          <div class="checkout-step">
+            ${checkoutState.step === "contact" ? `
+              <h2>Контакты</h2>
+              <p class="muted">Можно оформить заказ без регистрации. Аккаунт нужен только чтобы сохранить адрес и историю покупок.</p>
+              <div class="choice-grid compact">
+                <button class="choice-card ${checkoutState.account === "guest" ? "active" : ""}" onclick="setCheckout('account','guest')">
+                  <strong>Быстрый заказ</strong><span>Без пароля, только звонок менеджера.</span>
+                </button>
+                <button class="choice-card ${checkoutState.account === "register" ? "active" : ""}" onclick="setCheckout('account','register')">
+                  <strong>Создать аккаунт</strong><span>Сохраним адрес и заказы.</span>
+                </button>
+              </div>
+              <div class="field"><label for="checkoutName">Имя</label><input id="checkoutName" name="name" autocomplete="name" placeholder="Иван…" /></div>
+              <div class="field"><label for="checkoutPhone">Телефон</label><input id="checkoutPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 900 000-00-00…" /></div>
+              <div class="field"><label for="checkoutEmail">Email для чека</label><input id="checkoutEmail" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" placeholder="name@example.ru…" /></div>
+              ${checkoutState.account === "register" ? `
+                <div class="field"><label for="checkoutPassword">Пароль</label><input id="checkoutPassword" name="new-password" type="password" autocomplete="new-password" placeholder="Не короче 8 символов…" /></div>
+              ` : ""}
+              <button class="btn primary checkout-next" onclick="goCheckoutStep('${nextStep}')" ${entries.length ? "" : "disabled"}>Продолжить к доставке</button>
+            ` : ""}
+
+            ${checkoutState.step === "delivery" ? `
+              <h2>Доставка</h2>
+              <p class="muted">Сначала выберите сценарий доставки, затем укажите город и адрес. Менеджер уточнит доступные интервалы.</p>
+              <div class="choice-grid">
+                ${deliveryMethods.map((method) => `
+                  <button class="choice-card ${checkoutState.delivery === method.id ? "active" : ""}" onclick="setCheckout('delivery','${method.id}')">
+                    <strong>${method.title}</strong>
+                    <span>${method.meta} · ${method.price ? money(method.price) : "бесплатно"}</span>
+                    <small>${method.note}</small>
+                  </button>
+                `).join("")}
+              </div>
+              <div class="field"><label for="checkoutCity">Город</label><input id="checkoutCity" name="city" autocomplete="address-level2" placeholder="Москва…" /></div>
+              ${checkoutState.delivery === "pickup" ? `
+                <div class="field"><label for="checkoutStore">Магазин</label><select id="checkoutStore"><option>Москва, ул. Примерная, 1</option><option>Санкт-Петербург, Невский пр., 10</option></select></div>
+              ` : `
+                <div class="field"><label for="checkoutAddress">Адрес ${checkoutState.delivery === "pvz" ? "или район для ПВЗ" : "доставки"}</label><input id="checkoutAddress" name="street-address" autocomplete="street-address" placeholder="Улица, дом, квартира…" /></div>
+              `}
+              <div class="field"><label for="checkoutComment">Комментарий</label><textarea id="checkoutComment" name="comment" placeholder="Домофон, удобное время, ориентир…"></textarea></div>
+              <button class="btn primary checkout-next" onclick="goCheckoutStep('${nextStep}')">Продолжить к оплате</button>
+            ` : ""}
+
+            ${checkoutState.step === "payment" ? `
+              <h2>Оплата</h2>
+              <p class="muted">Сумма фиксируется после подтверждения наличия. До звонка менеджера деньги не списываются.</p>
+              <div class="choice-grid">
+                ${paymentMethods.map((method) => `
+                  <button class="choice-card ${checkoutState.payment === method.id ? "active" : ""}" onclick="setCheckout('payment','${method.id}')">
+                    <strong>${method.title}</strong>
+                    <span>${method.meta}</span>
+                    <small>${method.note}</small>
+                  </button>
+                `).join("")}
+              </div>
+              <div class="promo-row">
+                <label for="promoCode">Промокод</label>
+                <div><input id="promoCode" spellcheck="false" placeholder="GADGET…" /><button class="btn secondary" onclick="applyPromo()">${checkoutState.promoApplied ? "Применен" : "Применить"}</button></div>
+              </div>
+              <button class="btn primary checkout-next" onclick="goCheckoutStep('${nextStep}')">Проверить заказ</button>
+            ` : ""}
+
+            ${checkoutState.step === "confirm" ? `
+              <h2>Проверка заказа</h2>
+              <div class="confirm-list">
+                <div><span>Покупатель</span><strong>${checkoutState.account === "register" ? "Новый аккаунт" : "Гостевой заказ"}</strong></div>
+                <div><span>Доставка</span><strong>${selectedDelivery.title}</strong></div>
+                <div><span>Оплата</span><strong>${selectedPayment.title}</strong></div>
+                <div><span>Связь</span><strong>Звонок менеджера перед оплатой</strong></div>
+              </div>
+              <label class="check-row">
+                <input type="checkbox" checked />
+                <span>Я согласен с офертой и политикой обработки персональных данных.</span>
+              </label>
+              <button class="btn green checkout-next" onclick="submitOrder()" ${entries.length ? "" : "disabled"}>Подтвердить заказ</button>
+            ` : ""}
+          </div>
+
+          <div class="order-summary">
+            <h2>Итого</h2>
+            <div class="summary-row"><span>Товары</span><strong>${money(subtotal)}</strong></div>
+            <div class="summary-row"><span>Доставка</span><strong>${delivery ? money(delivery) : "бесплатно"}</strong></div>
+            ${discount ? `<div class="summary-row"><span>Промокод</span><strong>−${money(discount)}</strong></div>` : ""}
+            <div class="summary-row total"><span>К оплате</span><strong>${money(total)}</strong></div>
+            <p class="muted">Финальную сумму подтвердим перед оплатой. Чек отправим на email или передадим при получении.</p>
+          </div>
         </aside>
       </div>
     </section>
@@ -628,7 +790,7 @@ function render() {
   else app.innerHTML = legalPage(parts[0]);
 
   updateCartCount();
-  window.scrollTo({ top: 0, behavior: "instant" });
+  window.scrollTo(0, 0);
 }
 
 searchInput.addEventListener("input", () => {

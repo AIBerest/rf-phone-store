@@ -32,3 +32,17 @@ Use `Inter` across the site. Headlines rely on tight weight and scale, not decor
 Product cards are interactive inventory containers, so cards are appropriate there. Informational sections use restrained blocks and dividers instead of nested cards. Product imagery remains real photo/render assets and must stay front/back/product-focused.
 
 Buttons use black for the primary purchase path. Sale red is never used as a general brand color. Filter chips and memory/color options are pill controls with selected state using black.
+
+## Checkout Flow
+
+Research method: Refero MCP flow tools were not exposed in the current Codex environment, so the flow follows the Refero methodology with browser-researched ecommerce checkout references and the bundled craft rules for forms, focus states, mobile touch targets, and copy.
+
+Primary flow: cart -> contacts/account -> delivery/address -> payment -> review -> order accepted.
+
+Registration rule: account creation is optional. Guest checkout stays first because forcing registration before payment increases friction for a smartphone purchase. The account path only asks for a password after the buyer chooses to create an account.
+
+Delivery rule: show concrete RF-market choices as cards: pickup point, courier, and self-pickup. City and address fields use explicit labels and autocomplete attributes. The final delivery interval is confirmed by manager because inventory and logistics are prototype/static.
+
+Payment rule: show payment choices as cards: SBP, online card, pay on receipt, and installment. Money is not described as charged immediately; copy says the payment link/options come after stock confirmation.
+
+Confirmation rule: before submitting, the buyer sees selected account mode, delivery, payment, and manager callback. Legal consent remains visible near the final CTA.
