@@ -439,56 +439,144 @@ function productCard(product) {
   `;
 }
 
+function lineupStrip(items) {
+  return `
+    <nav class="lineup-strip" aria-label="Популярные линейки смартфонов">
+      ${items.map((product) => `
+        <a href="#/product/${product.id}">
+          ${productImage(product, "lineup")}
+          <span>${product.brand}</span>
+          <strong>${product.name.replace(product.brand, "").trim() || product.name}</strong>
+        </a>
+      `).join("")}
+    </nav>
+  `;
+}
+
+function comparisonColumn(product) {
+  return `
+    <article class="compare-card">
+      <a href="#/product/${product.id}" class="compare-image">${productImage(product, "compare")}</a>
+      <div class="compare-colors" aria-label="Доступные цвета">
+        <i style="background:${product.c1}"></i>
+        <i style="background:${product.c2}"></i>
+        <i></i>
+      </div>
+      <h3>${product.name}</h3>
+      <p>${product.memory}</p>
+      <strong>${money(product.price)}</strong>
+      <small>или от ${money(Math.ceil(product.price / 12))}/мес.</small>
+      <a class="btn primary mini" href="#/product/${product.id}">Купить</a>
+      <a class="learn-link" href="#/product/${product.id}">Подробнее</a>
+      <dl>
+        <div><dt>${product.specs.Экран}</dt><dd>дисплей</dd></div>
+        <div><dt>${product.specs.Камера}</dt><dd>камера</dd></div>
+        <div><dt>${product.specs.Батарея}</dt><dd>аккумулятор</dd></div>
+        <div><dt>${product.specs.Гарантия}</dt><dd>гарантия</dd></div>
+      </dl>
+    </article>
+  `;
+}
+
 function homePage() {
-  const top = products.slice(0, 6);
+  const top = products.slice(0, 8);
+  const heroProduct = products.find((product) => product.id === "redmi-15") || products[0];
+  const sideA = products.find((product) => product.id === "samsung-a56") || products[1];
+  const sideB = products.find((product) => product.id === "realme-note-60x-128") || products[2];
+  const compare = ["redmi-15", "samsung-a56", "realme-c75", "redmi-a5-128"]
+    .map((id) => products.find((product) => product.id === id))
+    .filter(Boolean);
   return `
     <section class="page">
+      ${lineupStrip(products.slice(0, 8))}
+
       <div class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Смартфоны в наличии с доставкой по России</p>
-          <h1>Телефоны, которые удобно выбрать и приятно получить</h1>
-          <p class="lead">Собрали популярные модели Redmi, realme и Samsung: реальные фото, понятные характеристики, честные цены и оформление заказа за несколько минут.</p>
+        <div class="hero-copy apple-hero-copy">
+          <p class="eyebrow">GadgetHub Store</p>
+          <h1>Смартфон ближе, чем кажется.</h1>
+          <p class="lead">Популярные модели Redmi, Samsung и realme с реальными фото, понятным сравнением и доставкой по России.</p>
           <div class="hero-actions">
-            <a class="btn primary" href="#/catalog">Смотреть каталог</a>
-            <a class="btn secondary" href="#/help">Доставка и гарантия</a>
-          </div>
-          <div class="stats">
-            <div class="stat"><strong>10</strong><span>популярных моделей</span></div>
-            <div class="stat"><strong>12</strong><span>месяцев гарантии</span></div>
-            <div class="stat"><strong>24/7</strong><span>заказ онлайн</span></div>
+            <a class="btn primary" href="#/product/${heroProduct.id}">Купить ${heroProduct.name}</a>
+            <a class="learn-link" href="#/catalog">Смотреть все модели</a>
           </div>
         </div>
-        <div class="hero-showcase" aria-label="Витрина смартфонов">
+        <div class="hero-showcase family-showcase" aria-label="Семья выбирает смартфон">
           <img class="hero-campaign-image" src="assets/hero-family-phone.png" alt="Семья выбирает смартфон в гостиной" />
-          <div class="hero-campaign-overlay">
-            <span>Подборка недели</span>
-            <strong>Новый смартфон без долгих сравнений</strong>
-            <small>Поможем выбрать модель под бюджет и доставим заказ по России</small>
-            <a class="btn primary" href="#/catalog">Выбрать телефон</a>
-          </div>
         </div>
       </div>
 
+      <section class="hero-banner dark-banner">
+        <div>
+          <p class="eyebrow">Хит недели</p>
+          <h2>${heroProduct.name}</h2>
+          <p>${heroProduct.memory} · ${heroProduct.specs.Батарея} · ${heroProduct.specs.Камера}</p>
+          <div class="hero-actions">
+            <a class="btn primary blue" href="#/product/${heroProduct.id}">Купить</a>
+            <a class="learn-link light" href="#/product/${heroProduct.id}">Подробнее</a>
+          </div>
+        </div>
+        ${productImage(heroProduct, "banner")}
+      </section>
+
+      <section class="hero-banner light-banner">
+        <div>
+          <p class="eyebrow">Больше памяти</p>
+          <h2>Модели 256 ГБ для фото, видео и приложений</h2>
+          <p>Подборка смартфонов с большим хранилищем, хорошей автономностью и гарантией 12 месяцев.</p>
+          <div class="hero-actions">
+            <a class="btn primary blue" href="#/catalog?budget=до 20 000 ₽">Подобрать модель</a>
+            <a class="learn-link" href="#/help">Условия покупки</a>
+          </div>
+        </div>
+        <div class="banner-phone-row">
+          ${productImage(sideA, "banner-mini")}
+          ${productImage(heroProduct, "banner-mini")}
+          ${productImage(products.find((product) => product.id === "redmi-15c") || sideB, "banner-mini")}
+        </div>
+      </section>
+
       <div class="section-head">
         <div>
-          <h2>Хиты продаж</h2>
-          <p class="muted">Модели с удачным сочетанием цены, памяти, автономности и надежности.</p>
+          <h2>Какая модель подойдет именно вам?</h2>
+          <p class="muted">Сравните ключевые характеристики и переходите к покупке без лишних вкладок.</p>
+        </div>
+      </div>
+      <div class="compare-grid">${compare.map(comparisonColumn).join("")}</div>
+
+      <div class="section-head">
+        <div>
+          <h2>Еще популярные модели</h2>
+          <p class="muted">Быстрый доступ к смартфонам, которые чаще всего выбирают в массовом сегменте.</p>
         </div>
         <a class="btn secondary" href="#/catalog">Все модели</a>
       </div>
       <div class="product-grid">${top.map(productCard).join("")}</div>
 
-      <div class="section-head">
+      <div class="section-head centered">
         <div>
-          <h2>Почему покупают здесь</h2>
-          <p class="muted">Покупка без лишних сложностей: проверяем товар, доставляем по России и остаемся на связи после заказа.</p>
+          <h2>Как купить смартфон выгоднее?</h2>
+          <p class="muted">Все важное рядом с витриной: доставка, оплата, гарантия и помощь с выбором.</p>
         </div>
       </div>
-      <div class="benefits">
-        <div class="benefit"><strong>Проверка перед отправкой</strong><p class="muted">Проверяем внешний вид, комплектацию и серийный номер.</p></div>
-        <div class="benefit"><strong>Доставка по РФ</strong><p class="muted">Курьер, ПВЗ, транспортные службы и самовывоз.</p></div>
-        <div class="benefit"><strong>Оплата как удобно</strong><p class="muted">Карта, СБП, наличные при получении, рассрочка.</p></div>
-        <div class="benefit"><strong>Гарантия 12 месяцев</strong><p class="muted">Помогаем с обменом, возвратом и гарантийным обращением.</p></div>
+      <div class="service-tiles">
+        <div class="service-tile">
+          <span>Trade-in</span>
+          <strong>Скидка за старый смартфон</strong>
+          <p>Оценим устройство перед заказом и подскажем итоговую выгоду.</p>
+          ${productImage(products.find((product) => product.id === "samsung-a17") || top[0], "tile")}
+        </div>
+        <div class="service-tile">
+          <span>Оплата</span>
+          <strong>Карта, СБП, рассрочка</strong>
+          <p>Выберите способ оплаты на шаге оформления. Деньги не списываются до подтверждения наличия.</p>
+          ${productImage(products.find((product) => product.id === "realme-c75") || top[1], "tile")}
+        </div>
+        <div class="service-tile wide">
+          <span>Гарантия и доставка</span>
+          <strong>Доставим по России и поможем после покупки</strong>
+          <p>Проверяем комплектацию, отправляем чек и остаемся на связи по гарантии 12 месяцев.</p>
+          <a class="learn-link" href="#/help">Подробнее об условиях</a>
+        </div>
       </div>
     </section>
   `;

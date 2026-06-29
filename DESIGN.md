@@ -1,27 +1,27 @@
 # Refero Phone Catalog
 
-Primary reference: [Nothing Tech Catalog Page UI](https://refero.design/pages/1e477637-d7a6-4264-8892-a056587b9232?query=phone%20store%20website%20design&source=search).
+Primary reference: [Apple iPhone product catalog page](https://refero.design/pages/ab5dbc02-c985-43d2-8e20-33df77b743c0?query=phone%20store%20web%20design%20references&source=search).
 
 ## Reference Lock
 
-Preserve from the reference: light retail canvas, large real product/lifestyle media, asymmetric hero composition, thin borders, neutral surfaces, short spec-led product copy, and a black primary purchase action.
+Preserve from the reference: clean white retail canvas, compact horizontal product lineup, large product-led hero, stacked promotional product bands, four-column model comparison, concise buy/learn-more CTAs, real product imagery, and generous whitespace.
 
-Adapt for GadgetHub: Russian consumer storefront, real smartphone photos, delivery and warranty trust signals, clear price blocks, catalog filters, product detail gallery, cart, checkout, and required commercial/legal pages.
+Adapt for GadgetHub: Russian consumer storefront, multi-brand smartphone selection, RF-market delivery/payment/warranty trust signals, ruble prices, catalog filters, product detail gallery, cart, checkout, account flows, and required commercial/legal pages.
 
-Reject: poster-like ad images for product cards, heavy black/red brutalist styling, decorative grids, fake CSS phone illustrations, internal prototype language, and generic card-heavy landing-page sections.
+Reject: copying Apple brand assets or text, poster-like ad images for product cards, heavy black/red brutalist styling, decorative grids, fake CSS phone illustrations, internal prototype language, and generic card-heavy landing-page sections.
 
 ## Tokens
 
-Background: `#F4F5F6`.
+Background: `#FFFFFF`.
 Canvas: `#FFFFFF`.
-Surface: `#F8F8F8`, strong surface `#ECEFF1`.
-Text: `#111315`, secondary `#5B616B`, tertiary `#8A929D`.
-Borders: `#DFE3E7`, strong `#C6CCD2`.
-Primary CTA: `#111315`, hover `#2A2F35`.
+Surface: `#F5F5F7`, strong surface `#E8E8ED`.
+Text: `#1D1D1F`, secondary `#6E6E73`, tertiary `#86868B`.
+Borders: `#D2D2D7`, strong `#B6B6BD`.
+Primary CTA: `#0071E3`, hover `#0077ED`.
 Sale/accent: `#E94D5F`, only for discounts and promo labels.
 Success: `#16845B`, only for positive status/actions.
-Radius: 8px.
-Elevation: subtle retail shadow only on hero media, mobile bar, and product hover.
+Radius: 18px for major sections and rounded CTA pills.
+Elevation: subtle retail shadow only on hero media, floating overlays, mobile bar, and product hover.
 
 ## Typography
 
@@ -31,7 +31,7 @@ Use `Inter` across the site. Headlines rely on tight weight and scale, not decor
 
 Product cards are interactive inventory containers, so cards are appropriate there. Informational sections use restrained blocks and dividers instead of nested cards. Product imagery remains real photo/render assets and must stay front/back/product-focused.
 
-Buttons use black for the primary purchase path. Sale red is never used as a general brand color. Filter chips and memory/color options are pill controls with selected state using black.
+Buttons use blue for the primary purchase path. Sale red is never used as a general brand color. Filter chips and memory/color options are pill controls with selected state using the primary action color or dark text where appropriate.
 
 ## Checkout Flow
 
